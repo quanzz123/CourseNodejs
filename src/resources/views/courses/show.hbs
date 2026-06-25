@@ -1,0 +1,58 @@
+<div class="course-detail-container">
+    <div class="course-content-left">
+        <h1 class="course-title">{{course.name}}</h1>
+        
+        <!-- Video Player hoặc Hình ảnh minh họa -->
+        {{#if course.videoId}}
+        <div class="video-container">
+            <iframe 
+                src="https://www.youtube.com/embed/{{course.videoId}}" 
+                title="{{course.name}}" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
+        </div>
+        {{else}}
+        <div class="course-banner-fallback">
+            <img src="{{course.image}}" alt="{{course.name}}">
+        </div>
+        {{/if}}
+
+        <div class="course-description-section">
+            <h2>Mô tả khóa học</h2>
+            <div class="desc-content">
+                {{course.description}}
+            </div>
+        </div>
+    </div>
+
+    <div class="course-sidebar-right">
+        <div class="course-card-sticky">
+            <div class="course-thumbnail">
+                <img src="{{course.image}}" alt="{{course.name}}">
+            </div>
+            
+            <div class="course-price-box">
+                <span class="price-value">Miễn phí</span>
+            </div>
+
+            <button class="btn-enroll-now">ĐĂNG KÝ HỌC NGAY</button>
+
+            <div class="course-meta-info">
+                <div class="meta-item">
+                    <span class="meta-icon">📊</span>
+                    <span class="meta-text">Trình độ cơ bản</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-icon">⏱️</span>
+                    <span class="meta-text">Học mọi lúc, mọi nơi</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-icon">🔑</span>
+                    <span class="meta-text">Sở hữu khóa học trọn đời</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
