@@ -18,13 +18,21 @@ class SiteController {
     }
     //[GET] /me/course/show
     show(req, res, next) {
-         Course.find({})
-        .then(courses => {
-            res.render('me/showCourses', {
-                courses : multipleMongooseToObject(courses)
+        Promise.all([
+            // truy vấn 1 lấy các khóa học chư bị xóa
+            Course.find({}),
+            //truy vấn 2: đếm các khóa học đã bị xóa mềm
+            Course.countDocumentsDeleted()
+
+        ])
+            .then(([courses, deletedCount]) => {
+                res.render('me/showCourses', {
+
+                    courses: multipleMongooseToObject(courses),
+                    deletedCount: deletedCount
+                })
             })
-        })
-        .catch(next)
+            .catch(next)
     }
 }
 

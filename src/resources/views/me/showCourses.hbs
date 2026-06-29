@@ -1,5 +1,11 @@
 <div class="mt-4">
     <h3>Khóa học của tôi</h3>
+    <!-- Chỉ hiển thị nút thùng rác khi có ít nhất 1 bản ghi bị xóa -->
+    {{#if deletedCount}}
+    <a href="/me/trash/courses" class="btn btn-outline-secondary d-flex align-items-center gap-2">
+        <i class="bi bi-trash"></i> Thùng rác ({{deletedCount}})
+    </a>
+    {{/if}}
 
     <table class="table mt-4 table-striped table-hover align-middle">
         <thead>

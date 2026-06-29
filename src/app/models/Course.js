@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import slug from 'mongoose-slug-updater';
+import mongooseDelete from 'mongoose-delete';
 
 mongoose.plugin(slug);
 
@@ -35,6 +36,11 @@ const courseSchema = new mongoose.Schema({
 }, {
   // Option này tự động thêm 2 trường: ngày tạo (createdAt) và ngày cập nhật (updatedAt)
   timestamps: true 
+});
+// 2. Thêm plugin xóa mềm vào Schema
+courseSchema.plugin(mongooseDelete, { 
+    deletedAt: true,        // Lưu thêm thời gian thực hiện xóa
+    overrideMethods: 'all'  // Tự động ẩn các bản ghi đã xóa khỏi các câu lệnh tìm kiếm thông thường (find, findOne...)
 });
 // tạo export model
 const Course = mongoose.model('Course', courseSchema);

@@ -1,4 +1,5 @@
 import Course from "../models/Course.js";
+import mongooseDelete from 'mongoose-delete';
 import {mongooseToObject, multipleMongooseToObject} from '../../util/mongoose.js'
 class CourseController {
 
@@ -47,6 +48,11 @@ class CourseController {
         Course.updateOne({_id : req.params.id}, req.body)
         .then(() => res.redirect('/me/courses/show'))
         .catch(next)
+    }
+    destroy(req, res, next) {
+        Course.delete({_id : req.params.id})
+            .then(() => res.redirect('/me/courses/show'))
+            .catch(next)
     }
     
 }

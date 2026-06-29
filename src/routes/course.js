@@ -3,6 +3,7 @@ import courseController from '../app/controllers/CourseController.js';
 
 const router = express.Router();
 
+router.delete('/:id', courseController.destroy)
 router.get('/:id/edit', courseController.edit)
 router.put('/:id', courseController.update)
 router.get('/create',courseController.create)
